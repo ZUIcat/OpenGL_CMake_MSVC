@@ -1,7 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include "RenderWindow.h"
+#include "base/RenderWindow.h"
 #include "Rectangle.h"
 
 class MyRenderWindow : public RenderWindow {

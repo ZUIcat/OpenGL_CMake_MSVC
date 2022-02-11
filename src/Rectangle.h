@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "GLDrawble.h"
+#include "base/GLDrawble.h"
 
 class Rectangle : public GLDrawble {
   private:

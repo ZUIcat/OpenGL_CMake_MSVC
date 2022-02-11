@@ -1,5 +1,5 @@
 #include "MyRenderWindow.h"
-#include "TextureUtil.h"
+#include "util/TextureUtil.h"
 
 void MyRenderWindow::OnWindowCreated() {
     // 设置窗口大小发生改变的回调方法

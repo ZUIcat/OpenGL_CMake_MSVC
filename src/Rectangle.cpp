@@ -18,11 +18,11 @@ bool Rectangle::Create() {
 
 bool Rectangle::CreateShader() {
     return
-        ShaderUtil::CreateShaderProgram(shaderProgram, "./shader/001.vert", "./shader/001.frag") and
-        ShaderUtil::GetUniformLocation(uMVPMatrixHandle, shaderProgram, "uMVPMatrix") and
-        ShaderUtil::GetAttribLocation(vPosHandle, shaderProgram, "vPos") and
-        ShaderUtil::GetAttribLocation(vColorHandle, shaderProgram, "vColor") and
-        ShaderUtil::GetAttribLocation(vTexCoordHandle, shaderProgram, "vTexCoord") and
+        ShaderUtil::CreateShaderProgram(shaderProgram, "./shader/001.vert", "./shader/001.frag") &&
+        ShaderUtil::GetUniformLocation(uMVPMatrixHandle, shaderProgram, "uMVPMatrix") &&
+        ShaderUtil::GetAttribLocation(vPosHandle, shaderProgram, "vPos") &&
+        ShaderUtil::GetAttribLocation(vColorHandle, shaderProgram, "vColor") &&
+        ShaderUtil::GetAttribLocation(vTexCoordHandle, shaderProgram, "vTexCoord") &&
         ShaderUtil::GetUniformLocation(uTextureHandle, shaderProgram, "uTexture");
 }
 

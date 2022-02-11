@@ -1,8 +1,4 @@
-// glm 定义 // TODO 位置
-#ifndef GLM_FORCE_EXPLICIT_CTOR
-#define GLM_FORCE_EXPLICIT_CTOR
-#endif
-
+#include "TheMain.h"
 #include "MyRenderWindow.h"
 
 int main() {
