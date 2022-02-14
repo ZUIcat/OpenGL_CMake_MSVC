@@ -81,4 +81,6 @@ class MartrixUtil {
     static glm::mat4 GetVPMatrix();
     // 获取总变换矩阵
     static glm::mat4 GetMVPMatrix();
+    // 获取总变换矩阵
+    static glm::mat4 GetMVPMatrix(glm::mat4 m_MMatrix);
 };

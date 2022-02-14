@@ -13,11 +13,11 @@ add_executable(main
     "src/third/glad.c"
     # Main
     "src/TheMain.h" "src/TheMain.cpp"
-    # Interface
-    "src/base/GameObject.h"
     # Main src
+    "src/base/Component.h"
     "src/base/RenderWindow.h" "src/base/RenderWindow.cpp"
     "src/base/Transform.h" "src/base/Transform.cpp"
+    "src/base/GameObject.h" "src/base/GameObject.cpp"
     "src/util/MartrixUtil.h" "src/util/MatrixUtil.cpp"
     "src/util/CameraUtil.h" "src/util/CameraUtil.cpp"
     "src/util/ShaderUtil.h" "src/util/ShaderUtil.cpp"

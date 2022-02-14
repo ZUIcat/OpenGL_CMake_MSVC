@@ -95,3 +95,7 @@ glm::mat4 MartrixUtil::GetVPMatrix() {
 glm::mat4 MartrixUtil::GetMVPMatrix() {
     return PMatrix * VMatrix * MMatrix;
 }
+
+glm::mat4 MartrixUtil::GetMVPMatrix(glm::mat4 m_MMatrix) {
+    return PMatrix * VMatrix * m_MMatrix;
+}

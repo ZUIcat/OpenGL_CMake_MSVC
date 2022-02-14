@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "base/GLDrawble.h"
+#include "base/Component.h"
 
-class Rectangle : public GLDrawble {
+class Rectangle : public Component {
   private:
     std::string name;
 
@@ -23,7 +23,7 @@ class Rectangle : public GLDrawble {
     explicit Rectangle(unsigned int texID01);
     // virtual ~Rectangle() override;
 
-    virtual bool Create() override;
+    virtual bool Create(GameObject gameObject) override;
     virtual void DrawSelf() override;
     virtual void Destroy() override;
 

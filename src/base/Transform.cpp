@@ -16,9 +16,9 @@ Transform::Transform() {
     needUpdate = false;
 }
 
-glm::vec3 Transform::getPosition() { return position; }
+glm::vec3 Transform::GetPosition() { return position; }
 
-void Transform::setPosition(float x, float y, float z) {
+void Transform::SetPosition(const float &x, const float &y, const float &z) {
     position.x = x;
     position.y = y;
     position.z = z;
@@ -28,9 +28,9 @@ void Transform::setPosition(float x, float y, float z) {
     needUpdate = true;
 }
 
-glm::vec3 Transform::getRotation() { return rotation; }
+glm::vec3 Transform::GetRotation() { return rotation; }
 
-void Transform::setRotation(float x, float y, float z) {
+void Transform::SetRotation(const float &x, const float &y, const float &z) {
     rotation.x = x;
     rotation.y = y;
     rotation.z = z;
@@ -42,9 +42,9 @@ void Transform::setRotation(float x, float y, float z) {
     needUpdate = true;
 }
 
-glm::vec3 Transform::getScale() { return scale; }
+glm::vec3 Transform::GetScale() { return scale; }
 
-void Transform::setScale(float x, float y, float z) {
+void Transform::SetScale(const float &x, const float &y, const float &z) {
     scale.x = x;
     scale.y = y;
     scale.z = z;
@@ -54,49 +54,52 @@ void Transform::setScale(float x, float y, float z) {
     needUpdate = true;
 }
 
-glm::mat4 Transform::getPositionMatrix() { return positionMatrix; }
+glm::mat4 Transform::GetPositionMatrix() { return positionMatrix; }
 
-glm::mat4 Transform::getRotationMatrix() { return rotationMatrix; }
+glm::mat4 Transform::GetRotationMatrix() { return rotationMatrix; }
 
-glm::mat4 Transform::getScaleMatrix() { return scaleMatrix; }
+glm::mat4 Transform::GetScaleMatrix() { return scaleMatrix; }
 
-glm::vec3 Transform::getForward() {
-    doUpdate();
+glm::mat4 Transform::getMMatrix() { return positionMatrix * rotationMatrix * scaleMatrix; }
+
+glm::vec3 Transform::GetForward() {
+    DoUpdate();
     return forward;
 }
 
-glm::vec3 Transform::getUp() {
-    doUpdate();
+glm::vec3 Transform::GetUp() {
+    DoUpdate();
     return up;
 }
 
-glm::vec3 Transform::getRight() {
-    doUpdate();
+glm::vec3 Transform::GetRight() {
+    DoUpdate();
     return right;
 }
 
-void Transform::doUpdate() {
+void Transform::DoUpdate() {
     if (!needUpdate) {
         return;
     }
-    forceUpdate();
+    ForceUpdate();
 }
 
-void Transform::forceUpdate() {
-    // TODO
-    glm::vec4 tmpForward = rotationMatrix * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f);
+void Transform::ForceUpdate() {
+    glm::mat4 tmpMat = positionMatrix * rotationMatrix * scaleMatrix;
+
+    glm::vec4 tmpForward = tmpMat * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f);
     forward.x = tmpForward.x;
     forward.y = tmpForward.y;
     forward.z = tmpForward.z;
     forward = glm::normalize(forward);
 
-    glm::vec4 tmpUp = rotationMatrix * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+    glm::vec4 tmpUp = tmpMat * glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
     up.x = tmpUp.x;
     up.y = tmpUp.y;
     up.z = tmpUp.z;
     up = glm::normalize(up);
 
-    glm::vec4 tmpRight = rotationMatrix * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+    glm::vec4 tmpRight = tmpMat * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
     right.x = tmpRight.x;
     right.y = tmpRight.y;
     right.z = tmpRight.z;

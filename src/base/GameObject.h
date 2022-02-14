@@ -1,16 +1,22 @@
 #pragma once
 
-#include "../util/MartrixUtil.h"
-#include "../util/ShaderUtil.h"
-#include "../util/CameraUtil.h"
+#include <vector>
+#include "Component.h"
+#include "Transform.h"
 
-class GLDrawble {
+class GameObject {
   private:
-  public:
-    // GLDrawble();
-    virtual ~GLDrawble() = default;
+    Transform transform;
+    std::vector<Component> components;
 
-    virtual bool Create() = 0;
-    virtual void DrawSelf() = 0;
-    virtual void Destroy() = 0;
+  public:
+    explicit GameObject();
+    virtual ~GameObject() = default;
+
+    virtual bool Create();
+    virtual void DrawSelf();
+    virtual void Destroy();
+
+    virtual Transform GetTransform();
+    virtual std::vector<Component> GetComponents();
 };

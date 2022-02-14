@@ -25,22 +25,23 @@ class Transform {
     explicit Transform();
     virtual ~Transform() = default;
 
-    glm::vec3 getPosition();
-    void setPosition(float x, float y, float z);
+    glm::vec3 GetPosition();
+    void SetPosition(const float &x, const float &y, const float &z);
 
-    glm::vec3 getRotation();
-    void setRotation(float x, float y, float z);
+    glm::vec3 GetRotation();
+    void SetRotation(const float &x, const float &y, const float &z);
 
-    glm::vec3 getScale();
-    void setScale(float x, float y, float z);
+    glm::vec3 GetScale();
+    void SetScale(const float &x, const float &y, const float &z);
 
-    glm::mat4 getPositionMatrix();
-    glm::mat4 getRotationMatrix();
-    glm::mat4 getScaleMatrix();
-    glm::vec3 getForward();
-    glm::vec3 getUp();
-    glm::vec3 getRight();
+    glm::mat4 GetPositionMatrix();
+    glm::mat4 GetRotationMatrix();
+    glm::mat4 GetScaleMatrix();
+    glm::mat4 getMMatrix();
+    glm::vec3 GetForward();
+    glm::vec3 GetUp();
+    glm::vec3 GetRight();
 
-    void doUpdate();
-    void forceUpdate();
+    void DoUpdate();
+    void ForceUpdate();
 };

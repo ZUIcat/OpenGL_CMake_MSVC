@@ -4,7 +4,7 @@ Rectangle::Rectangle(unsigned int texID01) : texID01(texID01), name("Rectangle")
 
 // Rectangle::~Rectangle() {}
 
-bool Rectangle::Create() {
+bool Rectangle::Create(GameObject gameObject) {
     if (!CreateShader()) {
         std::cout << "[ERROR] " << name << ": Could not CreateShader" << std::endl;
         return false;
