@@ -25,9 +25,12 @@ void MyRenderWindow::OnWindowCreated() {
 
     // 加载纹理
     TextureUtil::AddTexture("tex003", "./res/tex003.png");
-    // 创建矩形对象
-    rectangle = new Rectangle(TextureUtil::GetTexture("tex003"));
-    rectangle -> Create();
+
+    gameObjectTest = new GameObject();
+    gameObjectTest->GetTransform().SetPosition(0.5f, 0.0f, 0.0f);
+    Component *quad = new Quad(TextureUtil::GetTexture("tex003"));
+    gameObjectTest->GetComponents().push_back(quad);
+    gameObjectTest->Create();
 }
 
 void MyRenderWindow::OnDrawFrame() {
@@ -38,17 +41,12 @@ void MyRenderWindow::OnDrawFrame() {
     // 清除颜色缓冲
     glClear(GL_COLOR_BUFFER_BIT);
 
-    MartrixUtil::Push();
-    MartrixUtil::Translate(0.5f, 0.0f, 0.0f);
-    // 绘制矩形
-    rectangle->DrawSelf();
-    MartrixUtil::Pop();
+    gameObjectTest->Update();
 }
 
 void MyRenderWindow::OnWindowDestroy() {
-    // 销毁矩形对象
-    rectangle->Destroy();
-    delete(rectangle);
+    gameObjectTest->Destroy();
+    delete (gameObjectTest);
 }
 
 void MyRenderWindow::ProcessInput() {
@@ -56,12 +54,23 @@ void MyRenderWindow::ProcessInput() {
         glfwSetWindowShouldClose(glfwWindow, true);
     }
 
-    if (glfwGetKey(glfwWindow, GLFW_KEY_W) == GLFW_PRESS) {
-        CameraUtil::Zoom(0.001f);
+    if (glfwGetKey(glfwWindow, GLFW_KEY_R) == GLFW_PRESS) {
+        CameraUtil::Zoom(0.002f);
     }
-
+    if (glfwGetKey(glfwWindow, GLFW_KEY_F) == GLFW_PRESS) {
+        CameraUtil::Zoom(-0.002f);
+    }
+    if (glfwGetKey(glfwWindow, GLFW_KEY_W) == GLFW_PRESS) {
+        CameraUtil::RotateIn2AxisForInitPos(0.004f, 0.0f);
+    }
     if (glfwGetKey(glfwWindow, GLFW_KEY_S) == GLFW_PRESS) {
-        CameraUtil::Zoom(-0.001f);
+        CameraUtil::RotateIn2AxisForInitPos(-0.004f, 0.0f);
+    }
+    if (glfwGetKey(glfwWindow, GLFW_KEY_A) == GLFW_PRESS) {
+        CameraUtil::RotateIn2AxisForInitPos(0.0f, 0.004f);
+    }
+    if (glfwGetKey(glfwWindow, GLFW_KEY_D) == GLFW_PRESS) {
+        CameraUtil::RotateIn2AxisForInitPos(0.0f, -0.004f);
     }
 }
 

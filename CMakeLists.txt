@@ -14,15 +14,15 @@ add_executable(main
     # Main
     "src/TheMain.h" "src/TheMain.cpp"
     # Main src
-    "src/base/Component.h"
-    "src/base/RenderWindow.h" "src/base/RenderWindow.cpp"
-    "src/base/Transform.h" "src/base/Transform.cpp"
+    "src/base/Component.h" "src/base/Component.cpp"
     "src/base/GameObject.h" "src/base/GameObject.cpp"
+    "src/base/Transform.h" "src/base/Transform.cpp"
+    "src/base/RenderWindow.h" "src/base/RenderWindow.cpp"
     "src/util/MartrixUtil.h" "src/util/MatrixUtil.cpp"
     "src/util/CameraUtil.h" "src/util/CameraUtil.cpp"
     "src/util/ShaderUtil.h" "src/util/ShaderUtil.cpp"
     "src/util/TextureUtil.h" "src/util/TextureUtil.cpp"
-    "src/Rectangle.h" "src/Rectangle.cpp"
+    "src/Quad.h" "src/Quad.cpp"
     "src/MyRenderWindow.h" "src/MyRenderWindow.cpp"
 )
 

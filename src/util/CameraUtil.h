@@ -23,11 +23,8 @@ class CameraUtil {
         float upX, float upY, float upZ
     );
 
-    // 只用纵横两个轴，从初始位置开始旋转摄像机（以自己为中心）
+    // 只用纵横两个轴旋转摄像机（以自己为中心）
     static void RotateIn2AxisForInitPos(float xAngle, float yAngle);
-
-    // 只用纵横两个轴，从上个位置开始旋转摄像机（以自己为中心）
-    static void RotateIn2AxisForPrePos(float xAngle, float yAngle);
 
     // 旋转摄像机（以自己为中心）
     static void Rotate(float x, float y, float z, float angle);

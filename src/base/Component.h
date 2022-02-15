@@ -6,15 +6,20 @@
 #include "../util/CameraUtil.h"
 #include "GameObject.h"
 
+class GameObject; // TODO 前置引用
+class Transform;  // TODO 前置引用
+
 class Component {
   private:
-    GameObject gameObject;
+  protected:
+    GameObject *gameObject;
+    Transform *transform;
 
   public:
-    // Component();
+    explicit Component();
     virtual ~Component() = default;
 
-    virtual bool Create(GameObject gameObject) = 0;
-    virtual void DrawSelf() = 0;
-    virtual void Destroy() = 0;
+    virtual bool Create(GameObject *gameObject);
+    virtual void Update();
+    virtual void Destroy();
 };

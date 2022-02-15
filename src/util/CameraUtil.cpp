@@ -37,13 +37,28 @@ void CameraUtil::RotateIn2AxisForInitPos(float xAngle, float yAngle) {
 
     cameraXAngle = xAngle;
     cameraYAngle = yAngle;
-    glm::mat4 matrixY = glm::rotate(glm::mat4(1.0f), cameraYAngle, glm::vec3(0, 1, 0));
-    glm::mat4 matrixYX = glm::rotate(matrixY, cameraXAngle, glm::vec3(1, 0, 0));
-}
+ 
+    glm::mat4 matrixY = glm::rotate(glm::mat4(1.0f), cameraYAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 matrixYX = glm::rotate(matrixY, cameraXAngle, glm::vec3(1.0f, 0.0f, 0.0f));
 
-void CameraUtil::RotateIn2AxisForPrePos(float xAngle, float yAngle) {
-    cameraXAngle += xAngle;
-    cameraYAngle += yAngle;
+    glm::vec4 centerVec = glm::vec4(cameraParm[3] - cameraParm[0], cameraParm[4] - cameraParm[1], cameraParm[5] - cameraParm[2], 0.0f);
+    centerVec = glm::normalize(matrixYX * centerVec);
+    cameraParm[3] = cameraParm[0] + centerVec.x;
+    cameraParm[4] = cameraParm[1] + centerVec.y;
+    cameraParm[5] = cameraParm[2] + centerVec.z;
+
+    glm::vec4 upVec = glm::vec4(cameraParm[6], cameraParm[7], cameraParm[8], 0.0f);
+    upVec = glm::normalize(matrixYX * upVec);
+    cameraParm[6] = upVec.x;
+    cameraParm[7] = upVec.y;
+    cameraParm[8] = upVec.z;
+
+    // 设置摄像机参数
+    MartrixUtil::SetLookAt(
+        cameraParm[0], cameraParm[1], cameraParm[2],
+        cameraParm[3], cameraParm[4], cameraParm[5],
+        cameraParm[6], cameraParm[7], cameraParm[8]
+    );
 }
 
 void CameraUtil::Rotate(float x, float y, float z, float angle) {}

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "base/RenderWindow.h"
-#include "Rectangle.h"
+#include "Quad.h"
 
 class MyRenderWindow : public RenderWindow {
   private:
-    Rectangle* rectangle;
+    GameObject* gameObjectTest;
 
     virtual void ProcessInput();
     static void FramebufferSizeCallback(GLFWwindow *glfwWindow, int width, int height);
