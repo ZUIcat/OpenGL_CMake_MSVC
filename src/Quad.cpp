@@ -59,6 +59,11 @@ bool Quad::CreateData() {
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
+    // 一个顶点数组对象会储存以下这些内容：
+    // glEnableVertexAttribArray 和 glDisableVertexAttribArray 的调用。
+    // 通过 glVertexAttribPointer 设置的顶点属性配置。
+    // 通过 glVertexAttribPointer 调用与顶点属性关联的顶点缓冲对象。
+
     glGenBuffers(1, &VBO01);
     glBindBuffer(GL_ARRAY_BUFFER, VBO01);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -86,6 +91,10 @@ bool Quad::CreateData() {
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // 当目标是 GL_ELEMENT_ARRAY_BUFFER 的时候，VAO 会储存 glBindBuffer 的函数调用。这也意味着它也会储存解绑调用，
+    // 所以确保你没有在解绑 VAO 之前解绑索引数组缓冲，否则它就没有这个 EBO 配置了。
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);

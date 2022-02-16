@@ -16,5 +16,4 @@ void main()
     fTexCoord = vTexCoord;
     fColor = vColor;
     gl_Position = uMVPMatrix * vec4(vPos.x, vPos.y, vPos.z, 1.0f);
-    // gl_Position = vec4(vPos.x, vPos.y, vPos.z, 1.0f);
 }
