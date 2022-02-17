@@ -18,6 +18,10 @@ bool Quad::Create(GameObject *gameObject) {
         std::cout << "[ERROR] " << name << ": Could not CreateData" << std::endl;
         return false;
     }
+    if (!InitShaderValue()) {
+        std::cout << "[ERROR] " << name << ": Could not InitShaderValue" << std::endl;
+        return false;
+    }
 
     return true;
 }
@@ -98,20 +102,28 @@ bool Quad::CreateData() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    return true;
+}
+
+bool Quad::InitShaderValue() {
+    // shader
+    glUseProgram(shaderProgram);
+    // texture
+    glActiveTexture(GL_TEXTURE0); // 激活纹理单元
+    glBindTexture(GL_TEXTURE_2D, texID01); // 绑定这个纹理到当前激活的纹理单元（纹理单元 GL_TEXTURE0 默认总是被激活）
+    glUniform1i(static_cast<int>(uTextureHandle), 0); // 定义哪个 uniform 采样器对应哪个纹理单元
+    // vertex buffer
+    glBindVertexArray(VAO); // TODO 估计这东西不能放这里，可能需要每次 Update 的时候用
+
     return true;
 }
 
 void Quad::Update() {
     // shader
     glUseProgram(shaderProgram);
-    // texture
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texID01);
-    glUniform1i(static_cast<int>(uTextureHandle), 0);
     // matrix
     glUniformMatrix4fv(static_cast<int>(uMVPMatrixHandle), 1, GL_FALSE, glm::value_ptr(MartrixUtil::GetMVPMatrix(transform->getMMatrix())));
-    // other buffer
-    glBindVertexArray(VAO);
     // glDrawArrays(GL_TRIANGLES, 0, 6);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     // glBindVertexArray(0); // no need to unbind it every time

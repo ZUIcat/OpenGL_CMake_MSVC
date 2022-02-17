@@ -24,13 +24,19 @@ void MyRenderWindow::OnWindowCreated() {
     MartrixUtil::SetPerspProjection(-right, right, -top, top, near, far);
 
     // 加载纹理
-    TextureUtil::AddTexture("tex003", "./res/tex003.png");
+    TextureUtil::AddTexture("tex003", "./res/tex003_rgba.png");
 
-    gameObjectTest = new GameObject();
-    gameObjectTest->GetTransform().SetPosition(0.5f, 0.0f, 0.0f);
-    Component *quad = new Quad(TextureUtil::GetTexture("tex003"));
-    gameObjectTest->GetComponents().push_back(quad);
-    gameObjectTest->Create();
+    gameObjectTest01 = new GameObject();
+    gameObjectTest01->GetTransform().SetPosition(0.5f, 0.0f, 0.0f);
+    Component *quad1 = new Quad(TextureUtil::GetTexture("tex003"));
+    gameObjectTest01->GetComponents().push_back(quad1);
+    gameObjectTest01->Create();
+
+    gameObjectTest02 = new GameObject();
+    gameObjectTest02->GetTransform().SetPosition(-0.5f, 0.0f, 0.0f);
+    Component *quad2 = new Quad(TextureUtil::GetTexture("tex003"));
+    gameObjectTest02->GetComponents().push_back(quad2);
+    gameObjectTest02->Create();
 }
 
 void MyRenderWindow::OnDrawFrame() {
@@ -41,12 +47,15 @@ void MyRenderWindow::OnDrawFrame() {
     // 清除颜色缓冲
     glClear(GL_COLOR_BUFFER_BIT);
 
-    gameObjectTest->Update();
+    gameObjectTest01->Update();
+    gameObjectTest02->Update();
 }
 
 void MyRenderWindow::OnWindowDestroy() {
-    gameObjectTest->Destroy();
-    delete (gameObjectTest);
+    gameObjectTest01->Destroy();
+    delete (gameObjectTest01);
+    gameObjectTest02->Destroy();
+    delete (gameObjectTest02);
 }
 
 void MyRenderWindow::ProcessInput() {

@@ -28,4 +28,5 @@ class Quad : public Component {
 
     bool CreateShader();
     bool CreateData();
+    bool InitShaderValue();
 };

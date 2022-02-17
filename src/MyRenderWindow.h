@@ -5,7 +5,8 @@
 
 class MyRenderWindow : public RenderWindow {
   private:
-    GameObject* gameObjectTest;
+    GameObject* gameObjectTest01;
+    GameObject* gameObjectTest02;
 
     virtual void ProcessInput();
     static void FramebufferSizeCallback(GLFWwindow *glfwWindow, int width, int height);

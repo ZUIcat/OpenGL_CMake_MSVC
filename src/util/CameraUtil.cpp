@@ -35,7 +35,7 @@ void CameraUtil::RotateIn2AxisForInitPos(float xAngle, float yAngle) {
     // 这样父节点就是世界坐标系下的变化，子节点是物体坐标系下的变化
     // PosNew = matrixY * matrixX * PosInitial
 
-    cameraXAngle = xAngle;
+    cameraXAngle = xAngle; // TODO from initial pos
     cameraYAngle = yAngle;
  
     glm::mat4 matrixY = glm::rotate(glm::mat4(1.0f), cameraYAngle, glm::vec3(0.0f, 1.0f, 0.0f));

@@ -9,5 +9,11 @@ out vec4 FragColor;
 
 void main()
 {
-    FragColor = texture(uTexture, fTexCoord) * fColor;
+    vec4 texColor = texture(uTexture, fTexCoord);
+//    FragColor = texColor * max(vec4(1.0f), fColor);
+    if(texColor.a == 0.0f) {
+        FragColor = vec4(1.0f, 0.0f, 0.0f, 0.0f);
+    } else {
+        FragColor = texColor * max(vec4(1.0f), fColor);
+    }
 }
