@@ -8,6 +8,8 @@ class MyRenderWindow : public RenderWindow {
     GameObject* gameObjectTest01;
     GameObject* gameObjectTest02;
 
+    float tempVal;
+
     virtual void ProcessInput();
     static void FramebufferSizeCallback(GLFWwindow *glfwWindow, int width, int height);
 

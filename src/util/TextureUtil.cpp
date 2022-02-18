@@ -6,6 +6,12 @@
 
 std::map<std::string, unsigned int> TextureUtil::texMap; // TODO ??
 
+bool TextureUtil::Init() {
+    // 设置竖向坐标翻转
+    stbi_set_flip_vertically_on_load(true);
+    return true;
+}
+
 unsigned int TextureUtil::AddTexture(std::string texName, std::string imagePath) {
     // 纹理 ID
     unsigned int texID;
@@ -17,8 +23,6 @@ unsigned int TextureUtil::AddTexture(std::string texName, std::string imagePath)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // 设置竖向坐标翻转
-    //stbi_set_flip_vertically_on_load(true); // TODO 挪到 Init
     // 加载图片并生成纹理
     int width, height, nrChannels;
     unsigned char *data = stbi_load(imagePath.c_str(), &width, &height, &nrChannels, 0);

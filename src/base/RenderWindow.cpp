@@ -40,6 +40,10 @@ GLFWwindow *RenderWindow::InitWindow() {
 void RenderWindow::StartDraw() {
     // 绘制循环
     while (!glfwWindowShouldClose(glfwWindow)) {
+        // 更新时间差值
+        float currentFrameTime = glfwGetTime();
+        deltaFrameTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
         // 调用自定义的 OnDrawFrame 方法，这个方法会在派生类中被实现
         OnDrawFrame();
         // GLFW：交换缓冲

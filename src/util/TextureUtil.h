@@ -12,6 +12,7 @@ class TextureUtil {
   public:
     virtual ~TextureUtil() = default;
 
+    static bool Init();
     static unsigned int AddTexture(std::string texName, std::string imagePath);
     static unsigned int GetTexture(std::string texName);
 };
