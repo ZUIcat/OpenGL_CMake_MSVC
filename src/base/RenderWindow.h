@@ -13,8 +13,8 @@ class RenderWindow {
 
     GLFWwindow *glfwWindow;
 
-    float lastFrameTime = 0.0f; // 上一帧的时间
-    float deltaFrameTime = 0.0f; // 当前帧与上一帧的时间差
+    double lastFrameTime = 0.0f; // 上一帧的时间
+    double deltaFrameTime = 0.0f; // 当前帧与上一帧的时间差
 
     virtual void OnWindowCreated() = 0;
     virtual void OnDrawFrame() = 0;
